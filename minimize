@@ -1,0 +1,3 @@
+BooleanMinimize[(a∧b)∨(!a∧b∧!c),"CNF"]
+
+Simplify[(a∧b)∨(!a∧b∧!c)]
