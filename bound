@@ -1,0 +1,43 @@
+P = {1,2,3,4,5}
+R = {(1,1), (2,2), (3,3), (4,4), (5,5), (1,2), (2,3), (3,4), (4,5)}
+S = {2, 3}
+
+def is_upper_bound(x, S, R):
+  for s in S:
+    if (s,x) not in R and s!= x:
+      return False
+  return True
+
+def is_lower_bound(x, S, R):
+  for s in S:
+    if(x, s) not in R and x != s:
+      return False
+  return True
+
+def get_upper_bounds(S, P, R):
+  return[x for x in P if is_upper_bound(x,S, R)]
+
+def get_lower_bounds(S, P, R):
+  return[x for x in P if is_lower_bound(x, S, R)]
+
+def get_least_upper_bound(S, P, R):
+  upper_bounds = get_upper_bounds(S, P, R)
+  if not upper_bounds:
+    return None
+  lub = min(upper_bounds, key=lambda x: [y for y in P if (y,x) in R])
+  return lub if is_upper_bound(lub, S, R) else None
+
+def get_greatest_lower_bound(S,P,R):
+  lower_bounds = get_lower_bounds(S,P,R)
+  if not lower_bounds:  
+    return None
+  glb = max(lower_bounds, key = lambda x: [y for y in P if (x,y) in R])
+  return glb if is_lower_bound(glb, S, R) else None
+
+x = 4
+print("Is", x, "an upper bound of S:", is_upper_bound(x, S, R))
+print("Is", x, "a lower bound of S:", is_lower_bound(x, S, R))
+print("Set of all upper bounds of S:", get_upper_bounds(S, P , R))
+print("Set of all lower bounds of S:", get_lower_bounds(S, P , R))
+print("Least Upper bound of S:", get_least_upper_bound(S, P, R))
+print("Great lower bound of S:", get_greatest_lower_bound(S, P, R))
