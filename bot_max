@@ -1,0 +1,5 @@
+R=Poset(range(6),lambda x,y:x<=y))
+is_bottom = R.bottom()==0
+print("Is 0 the Bottom Element?", is_bottom)
+maximal_elements = R.maximal_elements()
+print("Maximal elements:", maximal_elements)
