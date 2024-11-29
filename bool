@@ -9,3 +9,8 @@ dual[f[x, y, z]]
 
 BooleanConvert[j[x, y, z], "DNF"]
    BooleanFunction[{{1, 0, 0}  1, {0, 1, 1}  1, {0, 0, 0}  1, {__}  0}, {x, y, z}, "DNF"]
+
+
+
+f[p_, q_, r_] := p && (q || r);
+BooleanTable[p, q, r, f[p, q, r]] // TableForm
