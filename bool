@@ -1,0 +1,11 @@
+f[x_, y_, z_] := (x ∧ y) ∨ (y ∧ z) ∨ (z ∧ x);
+g[x_, y_] := ! ((! (x ∨ y) ∧ x) ∨ ! ! ! y) ∨ (x ∧ y) ∨ (x ∧ ! y);
+h[x_, y_, z_] := (x && (! (y || z))) || ((x && y) || ! z) && x;
+dual[expr_] := expr /. {And  Or, Or  And, False  True, True  False}
+dual[f[x, y, z]]
+
+  
+% // Simplify
+
+BooleanConvert[j[x, y, z], "DNF"]
+   BooleanFunction[{{1, 0, 0}  1, {0, 1, 1}  1, {0, 0, 0}  1, {__}  0}, {x, y, z}, "DNF"]
